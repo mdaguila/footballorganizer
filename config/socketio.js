@@ -18,6 +18,7 @@ function onConnect(socket) {
   });
 
   // Insert sockets below
+  require('../api/partido/partido.socket').register(socket);
   require('../api/player/player.socket').register(socket);
 }
 

@@ -27,8 +27,18 @@ exports.index = function(req, res) {
 exports.create = function (req, res, next) {
   //Primero creo el objeto player
   var newPlayer = new Player();
+
   newPlayer.nombre = req.body.nombre;
   newPlayer.email = req.body.email;
+  
+  newPlayer.jugados= [0,0,0,0,0,0,0];
+  newPlayer.victorias= [0,0,0,0,0,0,0];
+  newPlayer.promediovictorias= [0,0,0,0,0,0,0];
+  newPlayer.goles= [0,0,0,0,0,0,0];
+  newPlayer.promediogoles= [0,0,0,0,0,0,0];
+  newPlayer.encajados= [0,0,0,0,0,0,0];
+  newPlayer.promedioencajados= [0,0,0,0,0,0,0]; 
+
   newPlayer.save(function(err, user){
     if (err) return validationError(res, err);
     console.log('Añadido un nuevo Jugador');

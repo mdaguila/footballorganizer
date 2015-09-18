@@ -29,6 +29,14 @@ exports.me = function(req, res) {
   });
 };
 
+// Creates a new player in the DB.
+exports.create = function(req, res) {
+  Player.create(req.body, function(err, player) {
+    if(err) { return handleError(res, err); }
+    return res.json(201, player);
+  });
+};
+
 // Updates an existing player in the DB.
 exports.update = function(req, res) {
   Player.findOne({email:req.user.email}, function (err, player) {
@@ -310,13 +318,6 @@ exports.show = function(req, res) {
   });
 };
 
-// Creates a new player in the DB.
-exports.create = function(req, res) {
-  Player.create(req.body, function(err, player) {
-    if(err) { return handleError(res, err); }
-    return res.json(201, player);
-  });
-};
 
 // Deletes a player from the DB.
 exports.destroy = function(req, res) {
